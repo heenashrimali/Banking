@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_04_011158) do
-
-  create_table "accounts", force: :cascade do |t|
-    t.string "type"
-    t.date "date_of_opening"
-    t.integer "account_no"
-    t.float "balance"
-    t.integer "customer_id"
-    t.integer "bank_id"
-    t.index ["bank_id"], name: "index_accounts_on_bank_id"
-    t.index ["customer_id"], name: "index_accounts_on_customer_id"
-  end
+ActiveRecord::Schema.define(version: 2018_10_04_150639) do
 
   create_table "atms", force: :cascade do |t|
     t.string "location"
@@ -78,16 +67,16 @@ ActiveRecord::Schema.define(version: 2018_10_04_011158) do
     t.index ["customer_id"], name: "index_loans_on_customer_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "transations", force: :cascade do |t|
     t.string "operation"
     t.date "date"
     t.integer "amount"
     t.integer "account_id"
     t.integer "atm_id"
     t.integer "branch_id"
-    t.index ["account_id"], name: "index_transactions_on_account_id"
-    t.index ["atm_id"], name: "index_transactions_on_atm_id"
-    t.index ["branch_id"], name: "index_transactions_on_branch_id"
+    t.index ["account_id"], name: "index_transations_on_account_id"
+    t.index ["atm_id"], name: "index_transations_on_atm_id"
+    t.index ["branch_id"], name: "index_transations_on_branch_id"
   end
 
 end
