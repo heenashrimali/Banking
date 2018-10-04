@@ -5,8 +5,8 @@ class Employee < ApplicationRecord
   validates :contact_no,uniqueness: true,length:{is: 10}
   validates :salary ,numericality: true
   validates :designation ,inclusion: { in: %w(Manager Clerk Casher DM PO)}
-  validates :check_age
-  validates :check_salary
+  validate :check_age
+  validate :check_salary
 
   private
   
