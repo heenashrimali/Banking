@@ -7,7 +7,7 @@ class Account < ApplicationRecord
   validates :account_no, numericality: { only_integer: true },uniqueness: true,length:{is: 13} 
   validates :type ,inclusion: { in: %w(Saving_Account Current_Account)}
   validate :check_balance_valid, on: [:create]
-  validates :check_balance_nonzero, on: [:update]
+  validates :check_balance_nonzero
   
   private
 
@@ -17,8 +17,8 @@ class Account < ApplicationRecord
     end
   end
   def check_balance_nonzero
-    if self.balance <= 0.00
-      errors.add(:balance, "not permitted to create account balance less than 0")
+    if self.balance < 0.00
+      errors.add(:balance, "not permitted account balance less than 0")
     end
   end
 
