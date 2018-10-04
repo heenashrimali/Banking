@@ -4,8 +4,8 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :marital_status
       t.string :address
-        t.date :date_of_birth
-        t.integer :age
+      t.date :date_of_birth
+      t.integer :age
       t.integer :contact_no
       t.references :branch, index: true, foreign_key: true
     end
