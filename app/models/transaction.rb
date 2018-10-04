@@ -5,9 +5,9 @@ class Transaction < ApplicationRecord
   validates :date, :operation , :amount , presence: true
   validates :amount ,  numericality: true 
   validates :operation ,inclusion: { in: %w(deposit withdrawal)}
-  validates :check_amount
-  validates :withdrawal_amount_and_balance_check
-  validates :withdrawal_amount
+  validate :check_amount
+  validate :withdrawal_amount_and_balance_check
+  validate :withdrawal_amount
   after_save :Update_balance
   
   private
