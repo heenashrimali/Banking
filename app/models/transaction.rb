@@ -8,8 +8,7 @@ class Transaction < ApplicationRecord
   validates :check_amount
   validates :withdrawal_amount_and_balance_check
   validates :withdrawal_amount
-  after_save :Update_balance_after_deposit ,if: :self.operation == "deposit"
-  after_save :left_balance_after_withdrawal ,if: :self.operation == "withdrawal"
+  after_save :Update_balance
   
   private
   
@@ -19,7 +18,7 @@ class Transaction < ApplicationRecord
     end
   end
   def withdrawal_amount_and_balance_check
-    if self.account.balance < self.amount && self.operation == "withdrawal"
+    if self.operation == "withdrawal" && self.account.balance < self.amount 
       errors.add(:amount, "not permitted invalid amount balance not enough")
     end
   end
@@ -28,15 +27,15 @@ class Transaction < ApplicationRecord
       errors.add(:amount, "not permitted invalid amount not multiple of 100")
     end
   end
-  def Update_balance_after_deposit
+  def Update_balance
+    if self.operation == "deposit"
       new_balance = self.account.balance + self.amount
-      self.account.update_attributes(balance: new_balance)
-    end
-  end
-  def left_balance_after_withdrawal
+    else
       new_balance = self.account.balance - self.amount
-      unless self.account.update_attributes(balance: new_balance)
-      raise "requested amount can not be withdrawed"
+    end
+      
+    unless self.account.update_attributes(balance: new_balance)
+      raise "request cannot be processed"
     end
   end
 end
