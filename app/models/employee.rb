@@ -16,7 +16,7 @@ class Employee < ApplicationRecord
     end
   end
   def check_salary
-    if self.salary <= 0
+    if self.salary <= 0.00
       errors.add(:salary, "not permitted invalid salary less than equal to zero ")
     end
   end

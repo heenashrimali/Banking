@@ -12,12 +12,12 @@ class Account < ApplicationRecord
   private
 
   def check_balance_valid
-    if self.balance < 1000
+    if self.balance < 1000.00
       errors.add(:base, "not permitted to create account balance less than 1000")
     end
   end
   def check_balance_nonzero
-    if self.balance <= 0
+    if self.balance <= 0.00
       errors.add(:balance, "not permitted to create account balance less than 0")
     end
   end

@@ -14,7 +14,7 @@ class Transaction < ApplicationRecord
   private
   
   def check_amount
-    if self.check_amount <= 0 
+    if self.check_amount <= 0.00 
       errors.add(:amount, "not permitted invalid amount less than zero")
     end
   end
@@ -24,7 +24,7 @@ class Transaction < ApplicationRecord
     end
   end
   def withdrawal_amount
-    if self.amount % 100 == 0 && self.operation == "withdrawal"
+    if self.amount % 100.00 == 0.00 && self.operation == "withdrawal"
       errors.add(:amount, "not permitted invalid amount not multiple of 100")
     end
   end
