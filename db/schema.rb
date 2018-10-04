@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2018_10_04_011158) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "type"
-    t.date "doo"
+    t.date "date_of_opening"
     t.integer "account_no"
     t.float "balance"
     t.integer "customer_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_10_04_011158) do
 
   create_table "branches", force: :cascade do |t|
     t.string "address"
-    t.integer "branch_code"
+    t.integer "code"
     t.integer "phone_no"
     t.integer "bank_id"
     t.index ["bank_id"], name: "index_branches_on_bank_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2018_10_04_011158) do
     t.string "name"
     t.string "marital_status"
     t.string "address"
-    t.date "dob"
+    t.date "date_of_birth"
     t.integer "age"
     t.integer "contact_no"
     t.integer "branch_id"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2018_10_04_011158) do
     t.string "name"
     t.string "address"
     t.string "designation"
-    t.date "doj"
+    t.date "date_of_joining"
     t.integer "age"
     t.integer "contact_no"
     t.float "salary"
