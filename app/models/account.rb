@@ -7,7 +7,7 @@ class Account < ApplicationRecord
   validates :account_no, numericality: { only_integer: true },uniqueness: true,length:{is: 13} 
   validates :type ,inclusion: { in: %w(Saving_Account Current_Account)}
   validate :check_balance_valid, on: [:create]
-  validates :check_balance_nonzero
+  validate :check_balance_nonzero
   
   private
 
