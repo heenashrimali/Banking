@@ -5,4 +5,19 @@ class Employee < ApplicationRecord
 	validates :contact_no,uniqueness: true,length:{is: 10}
 	validates :salary ,numericality: true
 	validates :designation ,inclusion: { in: %w(Manager Clerk Casher DM PO)}
+	validates :check_age, on: [:create]
+	validates :check_salary
+
+	private
+	def check_age
+		if self.age < 18 
+			errors.add(:age, "not permitted invalid age")
+		end
+	end
+	def check_salary
+		if self.salary <= 0
+			errors.add(:salary, "not permitted invalid salary less than equal to zero ")
+		end
+	end
+
 end
