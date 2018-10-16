@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_04_150639) do
+ActiveRecord::Schema.define(version: 2018_10_16_055218) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "type"
+    t.string "date_of_opening"
+    t.integer "account_no"
+    t.float "balance"
+    t.integer "customer_id"
+    t.integer "bank_id"
+    t.index ["bank_id"], name: "index_accounts_on_bank_id"
+    t.index ["customer_id"], name: "index_accounts_on_customer_id"
+  end
 
   create_table "atms", force: :cascade do |t|
     t.string "location"
