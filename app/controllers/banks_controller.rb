@@ -36,13 +36,13 @@ class BanksController < ApplicationController
 
   def index
     banks = Bank.all
-    render json: {theaters:@theaters}, status: :ok 
+    render json: {banks:@banks}, status: :ok 
   end
 
   def edit
     begin
       bank = Bank.find(params[:id])
-      render json: {theater:@theater}, status: :ok 
+      render json: {bank:@bank}, status: :ok 
     rescue e
       render json: {error:e.message}, status: :not_found
     end
